@@ -28,6 +28,7 @@ public class Register implements RegisterInterface {
         // initializes a register with the appropriate number of bits
         // method provided to avoid duplication of code in constructors
         this.memory = new DFlipFlop[numberOfBits];
+        for (int i = 0; i < numberOfBits; i++) this.memory[i] = new DFlipFlop();
     }
 
     // ================ END CONSTRUCTORS ================
