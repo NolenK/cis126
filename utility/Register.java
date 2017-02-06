@@ -5,6 +5,9 @@ public class Register implements RegisterInterface {
 
     // ================ CLASS PROPERTIES ================
     private static final int DEFAULT_NUMBER_OF_BITS = 8;
+    // the index of the elements inside the memory array represent the bit position of the binary number being stored
+    // this.memory[0] is the least significant bit
+    // this.memory[this.memory.length - 1] is the most significant bit
     private DFlipFlop[] memory;
     // ================ END CLASS PROPERTIES ================
 
@@ -29,14 +32,41 @@ public class Register implements RegisterInterface {
 
     // ================ END CONSTRUCTORS ================
 
-    public void setDatalines(String binaryData) {}
+    public void setDatalines(String binaryData) {
+        // see public void setDatalines(boolean[] binaryData)
+    }
 
-    public void setDatalines(int binaryData) {}
+    public void setDatalines(int binaryData) {
+        // see public void setDatalines(boolean[] binaryData)
+    }
 
-    public void setDatalines(boolean[] binaryData) {}
+    public void setDatalines(boolean[] binaryData) {
+        // sets the full register with the binary data
+        // the index in the boolean array represents the bit position
+        // the least significant bit starts at position 0
+        // and increases as the significance increases
+        // binaryData[0] is the least significant bit
+        // binaryData[binaryData.length - 1] is the most significant bit
+    }
 
-    public int getDatalines() {
+    public String getDatalinesString() {
+        // see public boolean[] getDatalines()
+        return "";
+    }
+
+    public int getDatalinesInteger() {
+        // see public boolean[] getDatalines()
         return 0;
+    }
+
+    public boolean[] getDatalines() {
+        // sets the full register with the binary data
+        // the index in the boolean array represents the bit position
+        // the least significant bit starts at position 0
+        // and increases as the significance increases
+        // getDatalines()[0] is the least significant bit
+        // getDatalines()[getDatalines().length - 1] is the most significant bit
+        return new boolean[this.size()];
     }
 
     public void clockIt() {

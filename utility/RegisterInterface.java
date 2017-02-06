@@ -4,18 +4,24 @@ public interface RegisterInterface {
     // interface for interacting with a register
 
     void setDatalines(String binaryData);
-    void setDatalines(boolean[] binaryData);
     void setDatalines(int binaryData);
+    void setDatalines(boolean[] binaryData);
     // sets the full register with the binary data
     // the index in the boolean array represents the bit position
     // the least significant bit starts at position 0
     // and increases as the significance increases
+    // binaryData[0] is the least significant bit
+    // binaryData[binaryData.length - 1] is the most significant bit
 
-    int getDatalines();
+    String getDatalinesString();
+    int getDatalinesInteger();
+    boolean[] getDatalines();
     // sets the full register with the binary data
     // the index in the boolean array represents the bit position
     // the least significant bit starts at position 0
     // and increases as the significance increases
+    // getDatalines()[0] is the least significant bit
+    // getDatalines()[getDatalines().length - 1] is the most significant bit
 
     void clockIt();
     // sends a HIGH pulse across the clock dataline
