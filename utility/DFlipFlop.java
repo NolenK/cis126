@@ -17,6 +17,13 @@ public class DFlipFlop  {
 
         this.nor1.solderOutputToInput2Of(this.nor2);
         this.and2.solderOutputToInput1Of(this.nor2);
+
+        // resetting the d-flipflop to ensure that the output initializes as false (LOW)
+        this.setD(false); // reset value
+
+        // mocking a clock pulse
+        this.setClock(true);
+        this.setClock(false);
     }
 
     // ================ END CONSTRUCTORS ================
