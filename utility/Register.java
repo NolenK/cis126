@@ -5,6 +5,10 @@ public class Register implements RegisterInterface {
 
     // ================ CLASS PROPERTIES ================
     private static final int DEFAULT_NUMBER_OF_BITS = 8;
+    // the index of the elements inside the memory array represent the bit position of the binary number being stored
+    // this.memory[0] is the least significant bit
+    // this.memory[this.memory.length - 1] is the most significant bit
+    private DFlipFlop[] memory;
     // ================ END CLASS PROPERTIES ================
 
 
@@ -23,18 +27,52 @@ public class Register implements RegisterInterface {
     private void initializeRegister(int numberOfBits) {
         // initializes a register with the appropriate number of bits
         // method provided to avoid duplication of code in constructors
+        this.memory = new DFlipFlop[numberOfBits];
     }
 
     // ================ END CONSTRUCTORS ================
 
-    public void setDatalines(String binaryData) {}
+    public void setDatalines(String binaryData) {
+        // see public void setDatalines(boolean[] binaryData)
+    }
 
-    public void setDatalines(int binaryData) {}
+    public void setDatalines(int binaryData) {
+        // see public void setDatalines(boolean[] binaryData)
+    }
 
-    public void setDatalines(boolean[] binaryData) {}
+    public void setDatalines(boolean[] binaryData) {
+        // sets the full register with the binary data
+        // the index in the boolean array represents the bit position
+        // the least significant bit starts at position 0
+        // and increases as the significance increases
+        // binaryData[0] is the least significant bit
+        // binaryData[binaryData.length - 1] is the most significant bit
+        for (int i = 0; i < min(binaryData.length, this.size()); i++) {
+            if (binaryData[i]) this.setBit(i);
+            else this.clearBit(i);
+        }
+    }
 
-    public int getDatalines() {
+    public String getDatalinesString() {
+        // see public boolean[] getDatalines()
+        return "";
+    }
+
+    public int getDatalinesInteger() {
+        // see public boolean[] getDatalines()
         return 0;
+    }
+
+    public boolean[] getDatalines() {
+        // sets the full register with the binary data
+        // the index in the boolean array represents the bit position
+        // the least significant bit starts at position 0
+        // and increases as the significance increases
+        // getDatalines()[0] is the least significant bit
+        // getDatalines()[getDatalines().length - 1] is the most significant bit
+        boolean[] output = new boolean[this.size()];
+        for (int i = 0; i < this.size(); i++) output[i] = this.getBit(i);
+        return output;
     }
 
     public void clockIt() {
@@ -42,12 +80,16 @@ public class Register implements RegisterInterface {
         // the clock cannot be accurately represented in a serial program
         // this method mocks the clock signal in a processor
 
-        // our code here
+        // setting all clock inputs to true (HIGH)
+        for (DFlipFlop bit : this.memory) bit.setClock(true);
+
+        // setting all clock inputs to false (LOW)
+        for (DFlipFlop bit : this.memory) bit.setClock(false);
     }
 
     public int size() {
         // returns the number of bits that the register can store
-        return -1;
+        return this.memory.length;
     }
 
     public void clearBit(int bitPosition) {
@@ -57,7 +99,13 @@ public class Register implements RegisterInterface {
         // the least significant bit starts at position 0
         // and increases as the significance increases
 
-        // our code here
+        // setting input D of bit to false (LOW)
+        this.memory[bitPosition].setD(false);
+
+        // sending a clock pulse through the register
+        // more efficient to only send a pulse to the indiviual bit; however,
+        // sending a clock pulse to everything is more representative of the hardware
+        this.clockIt();
     }
 
     public void setBit(int bitPosition) {
@@ -67,7 +115,13 @@ public class Register implements RegisterInterface {
         // the least significant bit starts at position 0
         // and increases as the significance increases
 
-        // our code here
+        // setting input D of bit to true (HIGH)
+        this.memory[bitPosition].setD(true);
+
+        // sending a clock pulse through the register
+        // more efficient to only send a pulse to the indiviual bit; however,
+        // sending a clock pulse to everything is more representative of the hardware
+        this.clockIt();
     }
 
     public boolean getBit(int bitPosition) {
@@ -76,7 +130,7 @@ public class Register implements RegisterInterface {
         // the least significant bit starts at position 0
         // and increases as the significance increases
 
-        // our code here
-        return false;
+        // output of d-flipflop is Q
+        return this.memory[bitPosition].getQ();
     }
 }
