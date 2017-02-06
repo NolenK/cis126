@@ -47,7 +47,7 @@ public class Register implements RegisterInterface {
         // and increases as the significance increases
         // binaryData[0] is the least significant bit
         // binaryData[binaryData.length - 1] is the most significant bit
-        for (int i = 0; i < min(binaryData.length, this.size()); i++) {
+        for (int i = 0; i < Math.min(binaryData.length, this.size()); i++) {
             if (binaryData[i]) this.setBit(i);
             else this.clearBit(i);
         }
