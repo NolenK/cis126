@@ -47,6 +47,10 @@ public class Register implements RegisterInterface {
         // and increases as the significance increases
         // binaryData[0] is the least significant bit
         // binaryData[binaryData.length - 1] is the most significant bit
+        for (int i = 0; i < min(binaryData.length, this.size()); i++) {
+            if (binaryData[i]) this.setBit(i);
+            else this.clearBit(i);
+        }
     }
 
     public String getDatalinesString() {
@@ -66,7 +70,9 @@ public class Register implements RegisterInterface {
         // and increases as the significance increases
         // getDatalines()[0] is the least significant bit
         // getDatalines()[getDatalines().length - 1] is the most significant bit
-        return new boolean[this.size()];
+        boolean[] output = new boolean[this.size()];
+        for (int i = 0; i < this.size(); i++) output[i] = this.getBit(i);
+        return output;
     }
 
     public void clockIt() {
