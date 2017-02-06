@@ -5,6 +5,7 @@ public class Register implements RegisterInterface {
 
     // ================ CLASS PROPERTIES ================
     private static final int DEFAULT_NUMBER_OF_BITS = 8;
+    private DFlipFlop[] memory;
     // ================ END CLASS PROPERTIES ================
 
 
@@ -23,6 +24,7 @@ public class Register implements RegisterInterface {
     private void initializeRegister(int numberOfBits) {
         // initializes a register with the appropriate number of bits
         // method provided to avoid duplication of code in constructors
+        this.memory = new DFlipFlop[numberOfBits];
     }
 
     // ================ END CONSTRUCTORS ================
@@ -42,12 +44,16 @@ public class Register implements RegisterInterface {
         // the clock cannot be accurately represented in a serial program
         // this method mocks the clock signal in a processor
 
-        // our code here
+        // setting all clock inputs to true (HIGH)
+        for (DFlipFlop bit : this.memory) bit.setClock(true);
+
+        // setting all clock inputs to false (LOW)
+        for (DFlipFlop bit : this.memory) bit.setClock(false);
     }
 
     public int size() {
         // returns the number of bits that the register can store
-        return -1;
+        return this.memory.length;
     }
 
     public void clearBit(int bitPosition) {
@@ -57,7 +63,13 @@ public class Register implements RegisterInterface {
         // the least significant bit starts at position 0
         // and increases as the significance increases
 
-        // our code here
+        // setting input D of bit to false (LOW)
+        this.memory[bitPosition].setD(false);
+
+        // sending a clock pulse through the register
+        // more efficient to only send a pulse to the indiviual bit; however,
+        // sending a clock pulse to everything is more representative of the hardware
+        this.clockIt();
     }
 
     public void setBit(int bitPosition) {
@@ -67,7 +79,13 @@ public class Register implements RegisterInterface {
         // the least significant bit starts at position 0
         // and increases as the significance increases
 
-        // our code here
+        // setting input D of bit to true (HIGH)
+        this.memory[bitPosition].setD(true);
+
+        // sending a clock pulse through the register
+        // more efficient to only send a pulse to the indiviual bit; however,
+        // sending a clock pulse to everything is more representative of the hardware
+        this.clockIt();
     }
 
     public boolean getBit(int bitPosition) {
@@ -76,7 +94,7 @@ public class Register implements RegisterInterface {
         // the least significant bit starts at position 0
         // and increases as the significance increases
 
-        // our code here
-        return false;
+        // output of d-flipflop is Q
+        return this.memory[bitPosition].getQ();
     }
 }
