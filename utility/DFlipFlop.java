@@ -1,15 +1,15 @@
 package utility;
 
 public class DFlipFlop  {
-
-    protected ReactiveLogicGate not = new ReactiveLogicGate(ReactiveLogicGate.NOT);
-    protected ReactiveLogicGate nor1 = new ReactiveLogicGate(ReactiveLogicGate.NOR);
-    protected ReactiveLogicGate nor2 = new ReactiveLogicGate(ReactiveLogicGate.NOR);
-    protected ReactiveLogicGate and1 = new ReactiveLogicGate(ReactiveLogicGate.AND);
-    protected ReactiveLogicGate and2 = new ReactiveLogicGate(ReactiveLogicGate.AND);
+    private ReactiveLogicGate not  = new ReactiveLogicGate(ReactiveLogicGate.NOT);
+    private ReactiveLogicGate nor1 = new ReactiveLogicGate(ReactiveLogicGate.NOR);
+    private ReactiveLogicGate nor2 = new ReactiveLogicGate(ReactiveLogicGate.NOR);
+    private ReactiveLogicGate and1 = new ReactiveLogicGate(ReactiveLogicGate.AND);
+    private ReactiveLogicGate and2 = new ReactiveLogicGate(ReactiveLogicGate.AND);
 
     // ================ CONSTRUCTORS ================
     public DFlipFlop() {
+        // putting together circuit
         this.not.solderOutputToInput1Of(this.and1);
 
         this.nor1.solderOutputToInput1Of(this.nor1);
@@ -18,6 +18,7 @@ public class DFlipFlop  {
         this.nor1.solderOutputToInput2Of(this.nor2);
         this.and2.solderOutputToInput1Of(this.nor2);
     }
+
     // ================ END CONSTRUCTORS ================
 
     public void setD(Boolean input) {
@@ -67,6 +68,4 @@ public class DFlipFlop  {
         // and input 2 of gateForInput
         this.nor2.solderOutputToInput2Of(gateForInput);
     }
-
-
 }

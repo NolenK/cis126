@@ -6,16 +6,16 @@ public class ReactiveLogicGate implements ReactiveLogicGateInterface {
     // the reactive logic gate is the building block for reactive circuits
 
     // ================ CLASS PROPERTIES ================
-    protected int gateId;
-    protected String instanceName = "";
-    protected boolean input1State = false;
-    protected boolean input2State = false;
-    protected boolean outputState = false;
-    protected LinkedList<ReactiveLogicGate> dependantLogicGatesInput1 = new LinkedList<ReactiveLogicGate>();
-    protected LinkedList<ReactiveLogicGate> dependantLogicGatesInput2 = new LinkedList<ReactiveLogicGate>();
+    private int gateId;
+    private String instanceName = "";
+    private boolean input1State = false;
+    private boolean input2State = false;
+    private boolean outputState = false;
+    private LinkedList<ReactiveLogicGate> dependantLogicGatesInput1 = new LinkedList<ReactiveLogicGate>();
+    private LinkedList<ReactiveLogicGate> dependantLogicGatesInput2 = new LinkedList<ReactiveLogicGate>();
 
     // logic gate types
-    protected static final String [] gateNames = { "NOT", "AND", "OR", "XOR", "NAND", "NOR" };
+    public static final String [] gateNames = { "NOT", "AND", "OR", "XOR", "NAND", "NOR" };
     public static final int NOT  = 0;
     public static final int AND  = 1;
     public static final int OR   = 2;
@@ -135,7 +135,7 @@ public class ReactiveLogicGate implements ReactiveLogicGateInterface {
         gateForInput.setInput2(this.outputState);
     }
 
-    protected void updateOutput() {
+    private void updateOutput() {
         // handler for updating changes to input state
         boolean newState = false;
 

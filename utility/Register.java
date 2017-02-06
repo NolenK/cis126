@@ -4,7 +4,7 @@ public class Register implements RegisterInterface {
     // implementation of a software version of a processor register
 
     // ================ CLASS PROPERTIES ================
-    protected static final int DEFAULT_NUMBER_OF_BITS = 8;
+    private static final int DEFAULT_NUMBER_OF_BITS = 8;
     // ================ END CLASS PROPERTIES ================
 
 
@@ -20,7 +20,7 @@ public class Register implements RegisterInterface {
         this.initializeRegister(numberOfBits);
     };
 
-    protected void initializeRegister(int numberOfBits) {
+    private void initializeRegister(int numberOfBits) {
         // initializes a register with the appropriate number of bits
         // method provided to avoid duplication of code in constructors
     }

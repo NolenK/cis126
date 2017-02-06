@@ -2,13 +2,13 @@ package utility;
 
 public class TruthTable implements TruthTableInterface {
     // a class to represent a turth table
-    protected static final int TO_STRING_NAME_LENGTH = 9;
-    protected static final String TRUE_STRING        = "1";
-    protected static final String FALSE_STRING       = "0";
+    private static final int TO_STRING_NAME_LENGTH = 9;
+    private static final String TRUE_STRING        = "1";
+    private static final String FALSE_STRING       = "0";
 
     // STATIC METHODS
 
-    protected static String cropName(String name) {
+    private static String cropName(String name) {
         if (name.length() > TO_STRING_NAME_LENGTH) return name.substring(0, TO_STRING_NAME_LENGTH);
 
         // centering shorter names
@@ -22,18 +22,18 @@ public class TruthTable implements TruthTableInterface {
         return name;
     }
 
-    protected static String stringify(boolean value) {
+    private static String stringify(boolean value) {
         return cropName((value ? TRUE_STRING : FALSE_STRING));
     }
 
-    protected static String[] copyOf(String[] array) {
+    private static String[] copyOf(String[] array) {
         // returns a deep copy of the array
         String[] newArray = new String[array.length];
         for (int i = 0; i < array.length; i++) newArray[i] = array[i];
         return newArray;
     }
 
-    protected static int indexOf(String[] array, String stringToFind) {
+    private static int indexOf(String[] array, String stringToFind) {
         // returns the index of the stringToFind in the array
         // returns -1 if a string is not found
         // return the first matching string, only checks for string values, not object reference
@@ -67,9 +67,9 @@ public class TruthTable implements TruthTableInterface {
         return binary;
     }
 
-    protected String[] inputNames = new String[0];
-    protected String[] outputNames = new String[0];
-    protected boolean[][] outputValues = new boolean[0][0];
+    private String[] inputNames = new String[0];
+    private String[] outputNames = new String[0];
+    private boolean[][] outputValues = new boolean[0][0];
 
     public TruthTable() {}
 
