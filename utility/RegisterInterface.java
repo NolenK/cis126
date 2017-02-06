@@ -1,4 +1,4 @@
-package lab04;
+package utility;
 
 public interface RegisterInterface {
     // interface for interacting with a register
