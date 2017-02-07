@@ -51,9 +51,9 @@ public class Register implements RegisterInterface {
         // binaryData[0] is the least significant bit
         // binaryData[binaryData.length - 1] is the most significant bit
         for (int i = 0; i < Math.min(binaryData.length, this.size()); i++) {
-            if (binaryData[i]) this.setBit(i);
-            else this.clearBit(i);
+            this.memory[i].setD(binaryData[i]);
         }
+        this.clockIt();
     }
 
     public String getDatalinesString() {
