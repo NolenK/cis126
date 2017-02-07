@@ -13,8 +13,9 @@ before_install:
 language: java
 jdk:
   - oraclejdk8
-  - oraclejdk7
-  - openjdk6
+# greentealatte uses lambda expression and will not work on anything less than jdk8
+#  - oraclejdk7
+#  - openjdk6
 
 # add all test files
 script:
