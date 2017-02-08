@@ -19,5 +19,5 @@ jdk:
 
 # add all test files
 script:
-  - javac test/RegisterTest.java
-  - java test.RegisterTest
+  - javac test/AllTests.java
+  - java test.AllTests
