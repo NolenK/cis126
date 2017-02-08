@@ -1,5 +1,11 @@
 package utility;
 
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+import java.security.*;
+
+
 public class BinaryOperations {
     // boolean arrays store the binary data with the index representing the bit position
     // the least significant bit starts at position 0
