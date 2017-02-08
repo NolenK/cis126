@@ -8,6 +8,7 @@ public class AllTests {
 
         driver.setIndentationToSpaces(4);
 
+        BinaryOperationsTest.defineTests(driver);
         DFlipFlopTest.defineTests(driver);
         RegisterTest.defineTests(driver);
 
