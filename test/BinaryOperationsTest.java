@@ -65,107 +65,107 @@ class BinaryOperationsTest {
 
     static void defineTests(GreenTeaLatte driver) {
         driver.describe("class BinaryOperations", () -> {
-                driver.describe("convertToArray(String binaryData)", () -> {
-                        for (int i = 0; i < (1 << BITS); i++) {
-                            final String binaryData = testConvertToString(i, BITS);
-                            boolean[] answer = testConvertToArray(binaryData);
-                            String testStatement =
-                                String.format("should convert \"%s\" to %s", binaryData, Arrays.toString(answer));
-                            driver.it(testStatement, () -> {
-                                    driver.assertTest(Arrays.equals(BinaryOperations.convertToArray(binaryData), answer));
-                                });
-                        }
+            driver.describe("convertToArray(String binaryData)", () -> {
+                for (int i = 0; i < (1 << BITS); i++) {
+                    final String binaryData = testConvertToString(i, BITS);
+                    boolean[] answer = testConvertToArray(binaryData);
+                    String testStatement =
+                        String.format("should convert \"%s\" to %s", binaryData, Arrays.toString(answer));
+                    driver.it(testStatement, () -> {
+                        driver.assertTest(Arrays.equals(BinaryOperations.convertToArray(binaryData), answer));
                     });
-                driver.describe("convertToArray(int binaryData, int numberOfBits)", () -> {
-                        for (int i = 0; i < (1 << BITS); i++) {
-                            final int binaryData = i;
-                            boolean[] answer = testConvertToArray(binaryData, BITS);
-                            String testStatement =
-                                String.format("should convert 0b%s to %s", Integer.toBinaryString(binaryData),
-                                Arrays.toString(answer));
-                            driver.it(testStatement, () -> {
-                                    driver.assertTest(Arrays.equals(BinaryOperations.convertToArray(binaryData,
-                                                BITS), answer));
-                                });
-                        }
-                    });
-                driver.describe("convertToArray(int binaryData, int numberOfBits)", () -> {
-                        driver.describe("should trim the results based on the number of bits", () -> {
-                                for (int i = (1 << BITS); i < (0b100 << BITS); i += 0b101) {
-                                    final int binaryData = i;
-                                    boolean[] answer = testConvertToArray(binaryData, BITS);
-                                    String testStatement =
-                                        String.format("should convert (0b%s, 4) to %s",
-                                        Integer.toBinaryString(binaryData),
-                                        Arrays.toString(answer));
-                                    driver.it(testStatement, () -> {
-                                            driver.assertTest(Arrays.equals(BinaryOperations.convertToArray(binaryData,
-                                                        BITS), answer));
-                                        });
-                                }
-                            });
-                    });
-                driver.describe("convertToInteger(String binaryData)", () -> {
-                        for (int i = 0; i < (1 << BITS); i++) {
-                            final String binaryData = testConvertToString(i, BITS);
-                            int answer = i;
-                            String testStatement =
-                                String.format("should convert \"%s\" to %d", binaryData, answer);
-                            driver.it(testStatement, () -> {
-                                    driver.assertTest(BinaryOperations.convertToInteger(binaryData) == answer);
-                                });
-                        }
-                    });
-                driver.describe("convertToInteger(boolean[] binaryData)", () -> {
-                        for (int i = 0; i < (1 << BITS); i++) {
-                            final boolean[] binaryData = testConvertToArray(i, BITS);
-                            int answer = i;
-                            String testStatement =
-                                String.format("should convert %s to %d", Arrays.toString(binaryData), answer);
-                            driver.it(testStatement, () -> {
-                                    driver.assertTest(BinaryOperations.convertToInteger(binaryData) == answer);
-                                });
-                        }
-                    });
-                driver.describe("convertToString(int binaryData, int numberOfBits)", () -> {
-                        for (int i = 0; i < (1 << BITS); i++) {
-                            final int binaryData = i;
-                            String answer = testConvertToString(binaryData, BITS);
-                            String testStatement =
-                                String.format("should convert 0b%s to \"%s\"", Integer.toBinaryString(binaryData),
-                                answer);
-                            driver.it(testStatement, () -> {
-                                    driver.assertTest(BinaryOperations.convertToString(binaryData, BITS).equals(answer));
-                                });
-                        }
-                    });
-                driver.describe("convertToString(int binaryData, int numberOfBits)", () -> {
-                        driver.describe("should trim the results based on the number of bits", () -> {
-                                for (int i = (1 << BITS); i < (0b100 << BITS); i += 0b101) {
-                                    final int binaryData = i;
-                                    String answer = testConvertToString(binaryData, BITS);
-                                    String testStatement =
-                                        String.format("should convert (0b%s, 4) to \"%s\"",
-                                        Integer.toBinaryString(binaryData),
-                                        answer);
-                                    driver.it(testStatement, () -> {
-                                            driver.assertTest(BinaryOperations.convertToString(binaryData,
-                                                    BITS).equals(answer));
-                                        });
-                                }
-                            });
-                    });
-                driver.describe("convertToString(boolean[] binaryData)", () -> {
-                        for (int i = 0; i < (1 << BITS); i++) {
-                            final boolean[] binaryData = testConvertToArray(i, BITS);
-                            String answer = testConvertToString(binaryData);
-                            String testStatement =
-                                String.format("should convert %s to \"%s\"", Arrays.toString(binaryData), answer);
-                            driver.it(testStatement, () -> {
-                                    driver.assertTest(BinaryOperations.convertToString(binaryData).equals(answer));
-                                });
-                        }
-                    });
+                }
             });
+            driver.describe("convertToArray(int binaryData, int numberOfBits)", () -> {
+                for (int i = 0; i < (1 << BITS); i++) {
+                    final int binaryData = i;
+                    boolean[] answer = testConvertToArray(binaryData, BITS);
+                    String testStatement =
+                        String.format("should convert 0b%s to %s", Integer.toBinaryString(binaryData),
+                                      Arrays.toString(answer));
+                    driver.it(testStatement, () -> {
+                        driver.assertTest(Arrays.equals(BinaryOperations.convertToArray(binaryData,
+                                                                                        BITS), answer));
+                    });
+                }
+            });
+            driver.describe("convertToArray(int binaryData, int numberOfBits)", () -> {
+                driver.describe("should trim the results based on the number of bits", () -> {
+                    for (int i = (1 << BITS); i < (0b100 << BITS); i += 0b101) {
+                        final int binaryData = i;
+                        boolean[] answer = testConvertToArray(binaryData, BITS);
+                        String testStatement =
+                            String.format("should convert (0b%s, 4) to %s",
+                                          Integer.toBinaryString(binaryData),
+                                          Arrays.toString(answer));
+                        driver.it(testStatement, () -> {
+                            driver.assertTest(Arrays.equals(BinaryOperations.convertToArray(binaryData,
+                                                                                            BITS), answer));
+                        });
+                    }
+                });
+            });
+            driver.describe("convertToInteger(String binaryData)", () -> {
+                for (int i = 0; i < (1 << BITS); i++) {
+                    final String binaryData = testConvertToString(i, BITS);
+                    int answer = i;
+                    String testStatement =
+                        String.format("should convert \"%s\" to %d", binaryData, answer);
+                    driver.it(testStatement, () -> {
+                        driver.assertTest(BinaryOperations.convertToInteger(binaryData) == answer);
+                    });
+                }
+            });
+            driver.describe("convertToInteger(boolean[] binaryData)", () -> {
+                for (int i = 0; i < (1 << BITS); i++) {
+                    final boolean[] binaryData = testConvertToArray(i, BITS);
+                    int answer = i;
+                    String testStatement =
+                        String.format("should convert %s to %d", Arrays.toString(binaryData), answer);
+                    driver.it(testStatement, () -> {
+                        driver.assertTest(BinaryOperations.convertToInteger(binaryData) == answer);
+                    });
+                }
+            });
+            driver.describe("convertToString(int binaryData, int numberOfBits)", () -> {
+                for (int i = 0; i < (1 << BITS); i++) {
+                    final int binaryData = i;
+                    String answer = testConvertToString(binaryData, BITS);
+                    String testStatement =
+                        String.format("should convert 0b%s to \"%s\"", Integer.toBinaryString(binaryData),
+                                      answer);
+                    driver.it(testStatement, () -> {
+                        driver.assertTest(BinaryOperations.convertToString(binaryData, BITS).equals(answer));
+                    });
+                }
+            });
+            driver.describe("convertToString(int binaryData, int numberOfBits)", () -> {
+                driver.describe("should trim the results based on the number of bits", () -> {
+                    for (int i = (1 << BITS); i < (0b100 << BITS); i += 0b101) {
+                        final int binaryData = i;
+                        String answer = testConvertToString(binaryData, BITS);
+                        String testStatement =
+                            String.format("should convert (0b%s, 4) to \"%s\"",
+                                          Integer.toBinaryString(binaryData),
+                                          answer);
+                        driver.it(testStatement, () -> {
+                            driver.assertTest(BinaryOperations.convertToString(binaryData,
+                                                                               BITS).equals(answer));
+                        });
+                    }
+                });
+            });
+            driver.describe("convertToString(boolean[] binaryData)", () -> {
+                for (int i = 0; i < (1 << BITS); i++) {
+                    final boolean[] binaryData = testConvertToArray(i, BITS);
+                    String answer = testConvertToString(binaryData);
+                    String testStatement =
+                        String.format("should convert %s to \"%s\"", Arrays.toString(binaryData), answer);
+                    driver.it(testStatement, () -> {
+                        driver.assertTest(BinaryOperations.convertToString(binaryData).equals(answer));
+                    });
+                }
+            });
+        });
     } /* defineTests */
 }
